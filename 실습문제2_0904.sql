@@ -185,8 +185,8 @@ ON s.deptno1 = d.deptno;
 SELECT e.NAME AS NAME,
        e.POSITION AS POSITION,
        e.PAY AS PAY,
-       p.s_pay AS LOW_PAY,
-       p.e_pay AS High_PAY
+       p.s_pay AS "Low PAY",
+       p.e_pay AS "High pay"
 FROM EMP2 e
 JOIN P_GRADE p
 ON e.POSITION = p.POSITION;
