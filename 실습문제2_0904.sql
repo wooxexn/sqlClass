@@ -1,0 +1,203 @@
+CREATE TABLE STUD_SCORE(
+  STUDENT_ID        VARCHAR2(13) NOT NULL PRIMARY KEY ,
+  MATH_SCORE      NUMBER(5) ,
+  ENG_SCORE        NUMBER(5)   ,
+  PHIL_SCORE       NUMBER(5)   ,
+  MUSIC_SCORE    NUMBER(5) 
+);
+COMMIT;
+
+
+INSERT INTO  STUD_SCORE ( STUDENT_ID , MATH_SCORE,   ENG_SCORE, PHIL_SCORE , MUSIC_SCORE)   VALUES ('0123511' , 89,78,78,90);
+INSERT INTO  STUD_SCORE ( STUDENT_ID , MATH_SCORE,   ENG_SCORE,  MUSIC_SCORE)   VALUES ('0255475' , 88,90,90);
+INSERT INTO  STUD_SCORE ( STUDENT_ID , MATH_SCORE  , MUSIC_SCORE)   VALUES ('9921100' , 87,98);
+INSERT INTO  STUD_SCORE ( STUDENT_ID , MATH_SCORE, ENG_SCORE, PHIL_SCORE , MUSIC_SCORE)   VALUES ('9732453' , 69,98,78,78);
+INSERT INTO  STUD_SCORE ( STUDENT_ID , MATH_SCORE, ENG_SCORE, PHIL_SCORE )   VALUES ('0578981' , 59,90,89);
+INSERT INTO  STUD_SCORE ( STUDENT_ID , MATH_SCORE, ENG_SCORE, PHIL_SCORE , MUSIC_SCORE)   VALUES ('0768789' , 94,80,87,99);
+INSERT INTO  STUD_SCORE ( STUDENT_ID , MATH_SCORE, ENG_SCORE, PHIL_SCORE , MUSIC_SCORE)   VALUES ('9824579' , 90,90,78,87);
+INSERT INTO  STUD_SCORE ( STUDENT_ID , MATH_SCORE, ENG_SCORE, PHIL_SCORE )   VALUES ('0565789' , 58,64,72);
+
+
+
+commit;
+ 
+ 
+
+CREATE TABLE STAFF_SAL(
+  ID         VARCHAR2(13) NOT NULL PRIMARY KEY ,
+  JOB       VARCHAR2(13) ,
+  CURRENT_SAL      NUMBER(10)   ,
+  ENG_SCORE        NUMBER(5)    
+);
+COMMIT;
+
+
+INSERT INTO  STAFF_SAL    VALUES ('2148', 'OFFICER' , 40000, 90);
+INSERT INTO  STAFF_SAL    VALUES ('5780', 'CLERK' , 32000, 98);
+INSERT INTO  STAFF_SAL    VALUES ('6870', 'MANAGER' , 100000, 81);
+INSERT INTO  STAFF_SAL    VALUES ('4565', 'CLERK' , 30000, 79);
+INSERT INTO  STAFF_SAL    VALUES ('9687', 'CLERK' , 33000, 66);
+INSERT INTO  STAFF_SAL    VALUES ('7337', 'MANAGER' , 100000, 95);
+INSERT INTO  STAFF_SAL    VALUES ('1321', 'OFFICER' , 43000, 80);
+INSERT INTO  STAFF_SAL    VALUES ('9896', 'CLERK' , 30000, 50);
+ 
+
+
+
+
+
+CREATE TABLE PRC(
+CUST_ID      VARCHAR2(13) NOT NULL PRIMARY KEY ,
+SET2            VARCHAR2(13) ,
+CARD_FLAG     NUMBER(1)   ,
+LOAN_FLAG     NUMBER(1)   ,
+INSURANCE_FLAG     NUMBER(1)   ,
+CTB_FLAG     NUMBER(1)   ,
+FUND_FLAG    NUMBER(1)   ,
+ANNL_REV   NUMBER(10)      
+);
+COMMIT;
+
+INSERT INTO  PRC    VALUES ('546515' , 'SILVER' , 1,1,1,1,1,1000);
+INSERT INTO  PRC    VALUES ('46780' , 'GOLD' , 0,0,1,1,0,20000);
+INSERT INTO  PRC    VALUES ('237848' , 'GOLD' , 1,1,0,1,1,30000);
+INSERT INTO  PRC    VALUES ('56432' , 'DIAMOND' , 1,0,1,1,1,10000);
+INSERT INTO  PRC    VALUES ('89647' , 'SILVER' , 0,0,1,1,0,3000);
+INSERT INTO  PRC    VALUES ('52333' , 'SILVER' , 1,1,0,1,0,2500 );
+INSERT INTO  PRC    VALUES ('89669' , 'GOLD' , 1,0,1,1,0,60000);
+INSERT INTO  PRC    VALUES ('21004' , 'SILVER' , 0,0,1,1,0,1000);
+INSERT INTO  PRC    VALUES ('17890' , 'DIAMOND' , 1,1,0,1,0,300000);
+ 
+ 
+CREATE TABLE   PROD_SALES(
+CUST_NM         VARCHAR2(13)  ,
+PRD_ID             VARCHAR2(5) ,
+SALES_AMT       NUMBER(10)      
+);
+COMMIT;
+
+INSERT INTO   PROD_SALES   VALUES ('LEE', 546 , 3000);
+INSERT INTO   PROD_SALES   VALUES ('KIM', 326 , 4780);
+INSERT INTO   PROD_SALES   VALUES ('KANG', 564 , 87900);
+INSERT INTO   PROD_SALES   VALUES ('KWON', 556 , 45478);
+INSERT INTO   PROD_SALES   VALUES ('KIM', 254 , 3000);
+INSERT INTO   PROD_SALES   VALUES ('YOO', 567 , 78900);
+INSERT INTO   PROD_SALES   VALUES ('PARK', 877 , 89787);
+INSERT INTO   PROD_SALES   VALUES ('LEE', 890 , 10000);
+INSERT INTO   PROD_SALES   VALUES ('KIM', 787 , 2341);
+INSERT INTO   PROD_SALES   VALUES ('PARK', 566 , 50000);
+
+
+-- 교재 114 유형1
+SELECT deptno, name ,
+       CASE
+           WHEN deptno = 101 THEN 'Computer Engineering'
+           ELSE ''
+       END 
+FROM professor;
+
+-- 교재 114 유형2
+SELECT deptno, name ,
+       CASE
+           WHEN deptno = 101 THEN 'Computer Engineering'
+           ELSE 'ETC'
+       END
+FROM professor;
+
+
+-- 교재 114 유형3
+SELECT deptno, name ,
+       CASE
+           WHEN deptno = 101 THEN 'Computer Engineering'
+           WHEN deptno = 102 THEN 'Multimedia Engineering'
+           WHEN deptno = 103 THEN 'Software Engineering'
+           ELSE 'ETC'
+       END
+FROM professor;
+
+
+
+--문제3
+SELECT SUM(math_score)
+FROM stud_score;
+
+--문제4
+SELECT AVG(music_score)
+FROM stud_score;
+
+--문제5
+SELECT MAX(math_score),
+       MIN(math_score)
+FROM stud_score;
+
+
+
+
+
+--문제1 PRC 테이블을 사용하여 고객등급별 인당 평균 연 수익을 계산하자 (GROUP BY 사용)
+SELECT SET2, AVG(ANNL_REV)
+FROM PRC
+GROUP BY SET2;
+
+--문제2 PRC 테이블을 사용하여 고객등급별 고객 수를 확인하자 (GROUP BY 사용)
+SELECT SET2, COUNT(*)
+FROM PRC
+GROUP BY SET2;
+
+
+--문제3 구매횟수가 두 번 이상인 고객에게 마케팅을 하려고 한다. 마케팅 대상자의 고객이름을 조회하시오.
+SELECT CUST_NM
+FROM PROD_SALES
+GROUP BY CUST_NM
+HAVING COUNT(*) >= 2;
+
+--문제4 구매금액의 합이 7만원 이상인 고객에게 마케팅을 하려고 한다. 마케팅 대상자는 누구일까?
+SELECT CUST_NM
+FROM PROD_SALES
+GROUP BY CUST_NM
+HAVING SUM(SALES_AMT) >= 70000;
+
+
+
+
+--동등조인 (equi) 실습
+--페이지 231p 사용예1
+SELECT e.empno, e.ename, d.dname
+FROM emp e
+JOIN dept d
+ON e.deptno = d.deptno;
+
+
+--페이지 231p 사용예2
+SELECT s.name "STU_NAME", p.name "PROF_NAME"
+FROM student s, professor p
+WHERE s.profno = p.profno;
+
+
+--페이지(연습문제) 254p 1번
+SELECT s.name AS STU_NAME, s.deptno1 AS DEPTNO1, d.dname AS DEPT_NAME
+FROM student s
+JOIN department d 
+ON s.deptno1 = d.deptno;
+
+
+--페이지(연습문제) 254p 2번
+SELECT e.NAME AS NAME,
+       e.POSITION AS POSITION,
+       e.PAY AS PAY,
+       p.s_pay AS LOW_PAY,
+       p.e_pay AS High_PAY
+FROM EMP2 e
+JOIN P_GRADE p
+ON e.POSITION = p.POSITION;
+
+
+
+
+
+
+
+
+
+
+
